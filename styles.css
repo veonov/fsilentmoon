@@ -1,0 +1,271 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.liquid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 15s infinite ease-in-out alternate;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: #333333;
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: #1a1a1a;
+    bottom: -150px;
+    right: -100px;    animation-delay: -5s;
+}
+
+.blob-3 {
+    width: 300px;
+    height: 300px;
+    background: #666666;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+.glass-container {
+    position: relative; /* Важно для абсолютного позиционирования аватарки */
+    width: 100%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 32px;
+    padding: 40px;
+    padding-left: 120px; /* Отступ слева, чтобы текст не наезжал на аватарку */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Стили для аватарки */
+.avatar {
+    position: absolute;
+    left: 40px; /* Отступ от левого края контейнера */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.avatar img {    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    background: linear-gradient(to right, #ffffff, #666666);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #888888;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px 48px 24px 48px;
+    padding: 28px;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px) scale(1.02);
+    border-radius: 48px 24px 48px 24px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+.card-title {
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: #ffffff;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.card-text {
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1.6;
+    color: #999999;
+    margin-bottom: 24px;
+}
+
+.glass-btn {
+    font-family: inherit;
+    font-size: 0.65rem; 
+    font-weight: 900; 
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 14px 24px;
+    border-radius: 100px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    display: inline-block; /* Для корректного отображения ссылки как кнопки */
+    text-align: center;
+}
+
+.glass-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+.glass-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.glass-btn:hover::before {
+    left: 100%;
+}
+
+.glass-btn:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 16px;
+    }
+    
+    .glass-container {
+        padding: 24px 20px;
+        padding-left: 20px; /* Убираем большой отступ на мобильных */
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Центрируем контент */
+    }
+
+    /* На мобильных аватарку размещаем сверху по центру */
+    .avatar {
+        position: static;
+        transform: none;
+        margin-bottom: 20px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+        line-height: 1.1;
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: 0.65rem;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+    .grid {
+        grid-template-columns: 1fr; 
+        gap: 16px; 
+        width: 100%;
+    }
+
+    .glass-card {
+        border-radius: 20px 36px 20px 36px;
+        padding: 24px 20px;
+    }
+
+    .card-text {
+        font-size: 0.75rem; 
+        line-height: 1.5;
+    }
+
+    .glass-btn {
+        width: 100%; 
+        padding: 16px 20px; 
+        font-size: 0.7rem; 
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
